@@ -1,14 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
+// import dotenv from 'dotenv';
 const discord_js_1 = require("discord.js");
 const angular_1 = require("./snippets/angular");
 const node_1 = require("./snippets/node");
 const commands_1 = require("./snippets/commands");
-dotenv_1.default.config();
+// dotenv.config();
 const client = new discord_js_1.Client();
 const PREFIX = '$';
 client.login(process.env.DISCORDJS_BOT_TOKEN);
@@ -34,7 +31,7 @@ client
             .split(/\s+/);
         switch (CMD_NAME) {
             case 'help':
-                message.channel.send(commands_1.commands.help);
+                message.channel.send(commands_1.commands);
             case 'node':
                 message.channel.send(node_1.nodeSnippets(args[0]));
             case 'angular':
