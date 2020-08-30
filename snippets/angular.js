@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.angular = exports.angularSnippets = void 0;
+exports.angularSnippets = void 0;
 const discord_js_1 = require("discord.js");
 const helpMsg = new discord_js_1.MessageEmbed()
     .setColor('#dd0031')
@@ -26,22 +26,20 @@ const helpMsg = new discord_js_1.MessageEmbed()
 exports.angularSnippets = (snippet) => {
     switch (snippet) {
         case 'lazy':
-            return exports.angular.lazy;
+            return angular.lazy;
         case 'interceptor':
-            return exports.angular.interceptor;
+            return angular.interceptor;
         case 'guard':
-            return exports.angular.guard;
+            return angular.guard;
         case 'resolver':
-            return exports.angular.resolver;
+            return angular.resolver;
         case 'elementRef':
-            exports.angular.elementRef;
-            break;
+            return angular.elementRef;
         default:
-            helpMsg;
-            break;
+            return helpMsg;
     }
 };
-exports.angular = {
+const angular = {
     example: `\`\`\`javascript
   
     \`\`\``,

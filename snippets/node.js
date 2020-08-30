@@ -18,8 +18,7 @@ exports.nodeSnippets = (snippet) => {
         case 'mysql':
             return exports.node.mysql;
         default:
-            helpMsg;
-            break;
+            return helpMsg;
     }
 };
 exports.node = {

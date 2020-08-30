@@ -30,12 +30,15 @@ client
             .substring(PREFIX.length)
             .split(/\s+/);
         switch (CMD_NAME) {
-            case 'help':
-                message.channel.send(commands_1.commands);
             case 'node':
                 message.channel.send(node_1.nodeSnippets(args[0]));
+                break;
             case 'angular':
                 message.channel.send(angular_1.angularSnippets(args[0]));
+                break;
+            default:
+                message.channel.send(commands_1.commands);
+                break;
         }
     }
 });
