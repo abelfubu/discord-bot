@@ -34,9 +34,11 @@ exports.angularSnippets = (snippet) => {
         case 'resolver':
             return exports.angular.resolver;
         case 'elementRef':
-            return exports.angular.elementRef;
+            exports.angular.elementRef;
+            break;
         default:
-            return helpMsg;
+            helpMsg;
+            break;
     }
 };
 exports.angular = {
