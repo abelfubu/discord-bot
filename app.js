@@ -14,43 +14,31 @@ const PREFIX = '$';
 client.login(process.env.DISCORDJS_BOT_TOKEN);
 client
     .on('ready', () => console.log('Successfully logged in!'))
+    .on('guildMemberAdd', member => {
+    member
+        .send(`Bienvenido ${member.user} a nuestro canal de discord!`)
+        .catch(console.error);
+})
     .on('message', message => {
+    const msg = message.content.toLowerCase();
     if (message.author.bot)
         return;
-    if (message.content.toLowerCase().includes('hola'))
+    if (msg.includes('hola'))
         message.channel.send(`Hola ${message.author}!`);
-    if (message.content.toLowerCase().includes('javascript'))
+    if (msg.includes('javascript'))
         message.react('742639748711055390');
     if (message.content.startsWith(PREFIX)) {
         const [CMD_NAME, ...args] = message.content
             .trim()
             .substring(PREFIX.length)
             .split(/\s+/);
-        console.log(CMD_NAME);
         switch (CMD_NAME) {
-            case 'multer':
-                message.channel.send(node_1.node.multer);
-                break;
             case 'help':
                 message.channel.send(commands_1.commands.help);
+            case 'node':
+                message.channel.send(node_1.nodeSnippets(args[0]));
             case 'angular':
-                switch (args[0]) {
-                    case 'lazy':
-                        message.channel.send(angular_1.angular.lazy);
-                        break;
-                    case 'interceptor':
-                        message.channel.send(angular_1.angular.interceptor);
-                        break;
-                    case 'guard':
-                        message.channel.send(angular_1.angular.guard);
-                        break;
-                    case 'resolver':
-                        message.channel.send(angular_1.angular.resolver);
-                        break;
-                    case 'elementRef':
-                        message.channel.send(angular_1.angular.elementRef);
-                        break;
-                }
+                message.channel.send(angular_1.angularSnippets(args[0]));
         }
     }
 });

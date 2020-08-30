@@ -1,6 +1,44 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.angular = void 0;
+exports.angular = exports.angularSnippets = void 0;
+const discord_js_1 = require("discord.js");
+const helpMsg = new discord_js_1.MessageEmbed()
+    .setColor('#dd0031')
+    .setTitle('Angular')
+    .setURL('https://angular.io/')
+    .setDescription('Angular code snippets')
+    .setThumbnail('https://angular.io/assets/images/logos/angular/logo-nav@2x.png')
+    .addFields({
+    name: '$angular lazy',
+    value: 'https://angular.io/api/router/LoadChildrenCallback',
+}, {
+    name: '$angular interceptor',
+    value: 'https://angular.io/api/common/http/HttpInterceptor',
+}, { name: '$angular guard', value: 'https://angular.io/api/router' }, {
+    name: '$angular resolver',
+    value: 'https://angular.io/api/router/Resolve',
+}, {
+    name: '$angular elementRef',
+    value: 'https://angular.io/api/core/ElementRef',
+})
+    .setTimestamp()
+    .setFooter('Javascript code snippets');
+exports.angularSnippets = (snippet) => {
+    switch (snippet) {
+        case 'lazy':
+            return exports.angular.lazy;
+        case 'interceptor':
+            return exports.angular.interceptor;
+        case 'guard':
+            return exports.angular.guard;
+        case 'resolver':
+            return exports.angular.resolver;
+        case 'elementRef':
+            return exports.angular.elementRef;
+        default:
+            return helpMsg;
+    }
+};
 exports.angular = {
     example: `\`\`\`javascript
   
