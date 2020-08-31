@@ -8,7 +8,7 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .setURL('https://nodejs.org/en/')
     .setDescription('Node code snippets')
     .setThumbnail('https://usefulangle.com/img/thumb/nodejs.png')
-    .addFields({ name: '$node dotenv', value: 'https://www.npmjs.com/package/dotenv' }, { name: '$node jwt', value: 'https://www.npmjs.com/package/jsonwebtoken' }, { name: '$node multer', value: 'https://www.npmjs.com/package/multer' }, { name: '$node mysql', value: 'https://www.npmjs.com/package/mysql' })
+    .addFields({ name: '$node cors', value: 'https://www.npmjs.com/package/cors' }, { name: '$node dotenv', value: 'https://www.npmjs.com/package/dotenv' }, { name: '$node jwt', value: 'https://www.npmjs.com/package/jsonwebtoken' }, { name: '$node multer', value: 'https://www.npmjs.com/package/multer' }, { name: '$node mysql', value: 'https://www.npmjs.com/package/mysql' })
     .setTimestamp()
     .setFooter('Javascript code snippets');
 exports.nodeSnippets = (snippet) => {
