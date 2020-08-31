@@ -8,7 +8,7 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .setURL('https://nodejs.org/en/')
     .setDescription('Node code snippets')
     .setThumbnail('https://usefulangle.com/img/thumb/nodejs.png')
-    .addFields({ name: '$node multer', value: 'https://www.npmjs.com/package/multer' }, { name: '$node mysql', value: 'https://www.npmjs.com/package/mysql' })
+    .addFields({ name: '$node dotenv', value: 'https://www.npmjs.com/package/dotenv' }, { name: '$node jwt', value: 'https://www.npmjs.com/package/jsonwebtoken' }, { name: '$node multer', value: 'https://www.npmjs.com/package/multer' }, { name: '$node mysql', value: 'https://www.npmjs.com/package/mysql' })
     .setTimestamp()
     .setFooter('Javascript code snippets');
 exports.nodeSnippets = (snippet) => {
@@ -17,6 +17,12 @@ exports.nodeSnippets = (snippet) => {
             return exports.node.multer;
         case 'mysql':
             return exports.node.mysql;
+        case 'jwt':
+            return exports.node.jwt;
+        case 'dotenv':
+            return exports.node.dotenv;
+        case 'cors':
+            return exports.node.cors;
         default:
             return helpMsg;
     }
@@ -25,6 +31,16 @@ exports.node = {
     example: `\`\`\`javascript
   
     \`\`\``,
+    cors: `\`\`\`javascript
+const cors = require('cors');
+
+app.use(cors());\`\`\``,
+    dotenv: `\`\`\`javascript
+require('dotenv').config();\`\`\``,
+    jwt: `\`\`\`javascript
+const jwt = require('jsonwebtoken');
+
+jwt.sign({user: user}, 'secret', {expiresIn: '1h'});\`\`\``,
     multer: `\`\`\`javascript
 //Multer config file
 
