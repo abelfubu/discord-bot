@@ -38,9 +38,22 @@ app.use(cors());\`\`\``,
     dotenv: `\`\`\`javascript
 require('dotenv').config();\`\`\``,
     jwt: `\`\`\`javascript
+//Create token in login
+const token = jwt.sign({user: user}, 'secret', {expiresIn: '1h'});
+
+//Middleware example
 const jwt = require('jsonwebtoken');
 
-jwt.sign({user: user}, 'secret', {expiresIn: '1h'});\`\`\``,
+module.exports = verify = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (token) {
+    jwt.verify(token, process.env.SECRET, (error, decoded) => {
+      if (error) res.json({ auth: 'Invalid token ...' });
+      req.body.user = decoded;
+    });
+    next();
+  } else res.json({ auth: 'Please login first ...' });
+};\`\`\``,
     multer: `\`\`\`javascript
 //Multer config file
 
