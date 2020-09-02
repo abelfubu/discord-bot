@@ -77,13 +77,16 @@ module.exports = upload;\`\`\``,
     mysql: `\`\`\`javascript
 const mysql      = require('mysql');
 const connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'me',
-	password : 'secret',
-	database : 'my_db'
+	host     : process.env.DB_HOST,
+	user     : process.env.DB_USER,
+	password : process.env.PASSWORD,
+	database : process.env.DATABASE
 });
  
-connection.connect();
+connection.connect((error) => {
+  if(error) throw new Error(error);
+  console.log('Successfully connected to DB...');
+});
 
 module.exports = connection;\`\`\``,
 };
