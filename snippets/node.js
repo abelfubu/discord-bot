@@ -11,11 +11,13 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .addFields({ name: '$node cors', value: 'https://www.npmjs.com/package/cors' }, { name: '$node dotenv', value: 'https://www.npmjs.com/package/dotenv' }, { name: '$node jwt', value: 'https://www.npmjs.com/package/jsonwebtoken' }, {
     name: '$node language',
     value: 'https://www.npmjs.com/package/languagedetect',
-}, { name: '$node multer', value: 'https://www.npmjs.com/package/multer' }, { name: '$node mysql', value: 'https://www.npmjs.com/package/mysql' })
+}, { name: '$node multer', value: 'https://www.npmjs.com/package/multer' }, { name: '$node mysql', value: 'https://www.npmjs.com/package/mysql' }, { name: '$node nodemailer', value: 'https://nodemailer.com/about/' })
     .setTimestamp()
     .setFooter('Javascript code snippets');
 exports.nodeSnippets = (snippet) => {
     switch (snippet) {
+        case 'nodemailer':
+            return exports.node.nodemailer;
         case 'multer':
             return exports.node.multer;
         case 'mysql':
@@ -34,6 +36,27 @@ exports.node = {
     example: `\`\`\`javascript
   
     \`\`\``,
+    nodemailer: `\`\`\`javascript
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+     user: 'youremail@gmail.com',
+     pass: 'yourpassword'
+  }
+ });
+ var mailOptions = {
+   from: 'youremail@gmail.com',
+   to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+ };
+ transporter.sendMail(mailOptions, function(error, info){
+   if (error) {
+    console.log(error);
+  } else {
+     console.log('Email sent: ' + info.response);
+  }
+});\`\`\``,
     language: `\`\`\`javascript
 const LanguageDetect = require('languagedetect');
 const lngDetector = new LanguageDetect();

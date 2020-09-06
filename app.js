@@ -11,17 +11,23 @@ const PREFIX = '$';
 client.login(process.env.DISCORDJS_BOT_TOKEN);
 client
     .on('ready', () => console.log('Successfully logged in!'))
-    .on('guildMemberAdd', member => {
+    .on('guildMemberAdd', (member) => {
     member
         .send(`Bienvenido ${member.user} a nuestro canal de discord!`)
         .catch(console.error);
 })
-    .on('message', message => {
+    .on('message', (message) => {
     const msg = message.content.toLowerCase();
     if (message.author.bot)
         return;
     if (msg.includes('hola'))
         message.channel.send(`Hola ${message.author}!`);
+    if (msg.includes('buenos dias'))
+        message.channel.send(`Buenos días ${message.author}!`);
+    if (msg.includes('code bot'))
+        message.channel.send(`En que puedo ayudarte ${message.author}?`);
+    if (msg.includes('buenas'))
+        message.channel.send(`Que pasa ${message.author}!`);
     if (msg.includes('javascript'))
         message.react('742639748711055390');
     if (message.content.startsWith(PREFIX)) {

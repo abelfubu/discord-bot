@@ -9,17 +9,20 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .setDescription('Angular code snippets')
     .setThumbnail('https://angular.io/assets/images/logos/angular/logo-nav@2x.png')
     .addFields({
+    name: '$angular elementRef',
+    value: 'https://angular.io/api/core/ElementRef',
+}, { name: '$angular guard', value: 'https://angular.io/api/router' }, {
+    name: '$angular interceptor',
+    value: 'https://angular.io/api/common/http/HttpInterceptor',
+}, { name: '$angular jwt', value: 'https://github.com/auth0/angular2-jwt' }, {
     name: '$angular lazy',
     value: 'https://angular.io/api/router/LoadChildrenCallback',
 }, {
-    name: '$angular interceptor',
-    value: 'https://angular.io/api/common/http/HttpInterceptor',
-}, { name: '$angular guard', value: 'https://angular.io/api/router' }, {
     name: '$angular resolver',
     value: 'https://angular.io/api/router/Resolve',
 }, {
-    name: '$angular elementRef',
-    value: 'https://angular.io/api/core/ElementRef',
+    name: '$angular theme',
+    value: 'https://material.angular.io/guide/theming',
 })
     .setTimestamp()
     .setFooter('Javascript code snippets');
@@ -27,6 +30,10 @@ exports.angularSnippets = (snippet) => {
     switch (snippet) {
         case 'lazy':
             return angular.lazy;
+        case 'theme':
+            return angular.theme;
+        case 'jwt':
+            return angular.jwt;
         case 'interceptor':
             return angular.interceptor;
         case 'guard':
@@ -43,6 +50,32 @@ const angular = {
     example: `\`\`\`javascript
   
     \`\`\``,
+    theme: `\`\`\`javascript
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$warn:    mat-palette($mat-red);
+
+$theme: mat-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,  
+  )
+));  
+@include angular-material-theme($theme);\`\`\``,
+    jwt: `\`\`\`javascript
+import { JwtHelperService } from "@auth0/angular-jwt";
+
+const helper = new JwtHelperService();
+
+const decodedToken = helper.decodeToken(myRawToken);
+const expirationDate = helper.getTokenExpirationDate(myRawToken);
+const isExpired = helper.isTokenExpired(myRawToken);\`\`\``,
     lazy: `\`\`\`javascript
 //LAZY LOADING
 [{
