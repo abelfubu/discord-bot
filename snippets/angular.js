@@ -9,6 +9,9 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .setDescription('Angular code snippets')
     .setThumbnail('https://angular.io/assets/images/logos/angular/logo-nav@2x.png')
     .addFields({
+    name: '$angular directives',
+    value: 'https://angular.io/guide/attribute-directives',
+}, {
     name: '$angular elementRef',
     value: 'https://angular.io/api/core/ElementRef',
 }, { name: '$angular guard', value: 'https://angular.io/api/router' }, {
@@ -28,6 +31,8 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .setFooter('Javascript code snippets');
 exports.angularSnippets = (snippet) => {
     switch (snippet) {
+        case 'directives':
+            return angular.directives;
         case 'lazy':
             return angular.lazy;
         case 'theme':
@@ -50,6 +55,46 @@ const angular = {
     example: `\`\`\`javascript
   
     \`\`\``,
+    directives: `\`\`\`javascript
+import {
+  Directive,
+  Renderer2,
+  HostListener,
+  ElementRef,
+  OnInit,
+  Input,
+} from '@angular/core';
+
+@Directive({
+  selector: '[appTooltip]',
+})
+export class MegalightDirective implements OnInit {
+  span: HTMLSpanElement = this.renderer.createElement('span');
+
+  @Input('appTooltip') text: string;
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  ngOnInit(): void {
+    (this.el.nativeElement as HTMLElement).style.position = 'relative';
+    this.span.style.position = 'absolute';
+    this.span.style.left = '20px';
+    this.span.style.bottom = '25px';
+    this.span.style.backgroundColor = '#232323';
+    this.span.style.color = 'white';
+    this.span.style.padding = '12px';
+    this.span.style.borderRadius = '6px';
+    this.span.style.fontSize = '11px';
+    this.span.style.boxShadow = '0 2px 2px #23232350';
+  }
+
+  @HostListener('mouseenter') onMouseEnter(): void {
+    this.span.textContent = this.text;
+    this.renderer.appendChild(this.el.nativeElement, this.span);
+  }
+
+  @HostListener('mouseleave') onMouseLeave(): void {
+    this.renderer.removeChild(this.el.nativeElement, this.span);
+  }
+}\`\`\``,
     theme: `\`\`\`javascript
 @import '~@angular/material/theming';
 
