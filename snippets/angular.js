@@ -21,6 +21,9 @@ const helpMsg = new discord_js_1.MessageEmbed()
     name: '$angular lazy',
     value: 'https://angular.io/api/router/LoadChildrenCallback',
 }, {
+    name: '$angular rating',
+    value: 'custom component',
+}, {
     name: '$angular resolver',
     value: 'https://angular.io/api/router/Resolve',
 }, {
@@ -31,6 +34,8 @@ const helpMsg = new discord_js_1.MessageEmbed()
     .setFooter('Javascript code snippets');
 exports.angularSnippets = (snippet) => {
     switch (snippet) {
+        case 'rating':
+            return angular.directives;
         case 'directives':
             return angular.directives;
         case 'lazy':
@@ -53,8 +58,46 @@ exports.angularSnippets = (snippet) => {
 };
 const angular = {
     example: `\`\`\`javascript
-  
     \`\`\``,
+    rating: `\`\`\`javascript
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Icon } from '../models/enums/icons.enum';
+
+@Component({
+  selector: 'app-rating',
+  templateUrl: './rating.component.html',
+  styleUrls: ['./rating.component.scss'],
+})
+export class RatingComponent implements OnInit {
+  icon = Icon;
+  stars = [1, 2, 3, 4, 5];
+  @Input() currentRating = 0;
+  @Output() newRating = new EventEmitter<number>();
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  setRating(rating: number): void {
+    this.currentRating = rating + 1;
+    this.newRating.emit(rating + 1);
+  }
+} 
+
+i {
+  color: goldenrod;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    color: darken(goldenrod, 3%);
+  }
+
+  &:active {
+    transform: scale(0.9);
+    color: goldenrod;
+  }
+}\`\`\``,
     directives: `\`\`\`javascript
 import {
   Directive,
