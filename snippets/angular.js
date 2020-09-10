@@ -35,7 +35,7 @@ const helpMsg = new discord_js_1.MessageEmbed()
 exports.angularSnippets = (snippet) => {
     switch (snippet) {
         case 'rating':
-            return angular.directives;
+            return angular.rating;
         case 'directives':
             return angular.directives;
         case 'lazy':
